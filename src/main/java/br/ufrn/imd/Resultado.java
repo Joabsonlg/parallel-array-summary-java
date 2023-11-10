@@ -2,6 +2,9 @@ package br.ufrn.imd;
 
 import java.util.Map;
 
+/**
+ * Classe que representa o resultado do processamento dos itens.
+ */
 public class Resultado {
     private final double totalSum;
     private final Map<Integer, Double> subtotalPorGrupo;
