@@ -1,0 +1,11 @@
+Resultados para N=5, T=256:
+Somatório dos Totais: 501112.4121220691
+Somatório dos Subtotais por Grupo:
+Grupo 1: 99389.04865249878
+Grupo 2: 101366.73763393935
+Grupo 3: 100429.72748462597
+Grupo 4: 100612.45506027297
+Grupo 5: 99314.44329073244
+Número de elementos com total < 5: 49919
+Número de elementos com total >= 5: 50081
+Tempo para N=5, T=256: 133144310 nanossegundos.

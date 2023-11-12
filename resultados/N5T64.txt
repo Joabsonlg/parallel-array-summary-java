@@ -1,0 +1,11 @@
+Resultados para N=5, T=64:
+Somatório dos Totais: 498845.1224927495
+Somatório dos Subtotais por Grupo:
+Grupo 1: 100779.75190353316
+Grupo 2: 99917.68300209194
+Grupo 3: 99228.01227151939
+Grupo 4: 98877.31740273713
+Grupo 5: 100042.35791286465
+Número de elementos com total < 5: 50221
+Número de elementos com total >= 5: 49779
+Tempo para N=5, T=64: 113305963 nanossegundos.

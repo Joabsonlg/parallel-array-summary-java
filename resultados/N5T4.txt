@@ -1,0 +1,11 @@
+Resultados para N=5, T=4:
+Somatório dos Totais: 500891.6244737002
+Somatório dos Subtotais por Grupo:
+Grupo 1: 100118.33483030519
+Grupo 2: 100932.01487343147
+Grupo 3: 99596.56631717786
+Grupo 4: 99662.75792081925
+Grupo 5: 100581.9505319666
+Número de elementos com total < 5: 49864
+Número de elementos com total >= 5: 50136
+Tempo para N=5, T=4: 112634229 nanossegundos.

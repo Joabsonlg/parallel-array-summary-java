@@ -18,7 +18,7 @@ public class ParallelArraySummary {
     public List<Item> carregarItens(int N) {
         List<Item> itens = new ArrayList<>();
         Random rand = new Random();
-        for (int i = 0; i < 10 * N; i++) {
+        for (int i = 0; i < Math.pow(10, N); i++) {
             itens.add(new Item(i, rand.nextDouble() * 10, rand.nextInt(5) + 1));
         }
         return itens;
@@ -91,15 +91,20 @@ public class ParallelArraySummary {
     }
 
     /**
-     * Exibe os resultados.
+     * Gera uma string com os resultados.
      *
-     * @param resultado Resultado a ser exibido.
+     * @param resultado Resultado a ser formatado.
+     * @return Uma string contendo os resultados formatados.
      */
-    public void exibirResultados(Resultado resultado) {
-        System.out.println("Somatório dos Totais: " + resultado.getTotalSum());
-        System.out.println("Somatório dos Subtotais por Grupo:");
-        resultado.getSubtotalPorGrupo().forEach((grupo, subtotal) -> System.out.println("Grupo " + grupo + ": " + subtotal));
-        System.out.println("Número de elementos com total < 5: " + resultado.getCountMenorQue5());
-        System.out.println("Número de elementos com total >= 5: " + resultado.getCountMaiorIgual5());
+    public String formatarResultados(Resultado resultado) {
+        StringBuilder sb = new StringBuilder();
+        sb.append("Somatório dos Totais: ").append(resultado.getTotalSum()).append("\n");
+        sb.append("Somatório dos Subtotais por Grupo:\n");
+        for (Map.Entry<Integer, Double> entry : resultado.getSubtotalPorGrupo().entrySet()) {
+            sb.append("Grupo ").append(entry.getKey()).append(": ").append(entry.getValue()).append("\n");
+        }
+        sb.append("Número de elementos com total < 5: ").append(resultado.getCountMenorQue5()).append("\n");
+        sb.append("Número de elementos com total >= 5: ").append(resultado.getCountMaiorIgual5()).append("\n");
+        return sb.toString();
     }
 }
