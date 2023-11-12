@@ -1,20 +1,20 @@
 package br.ufrn.imd;
 
 /**
- * Classe que representa um item.
+ * Class that represents an item.
  */
 public class Item {
     private int id;
     private double total;
-    private int grupo;
+    private int group;
 
     /**
      * Constructors
      */
-    public Item(int id, double total, int grupo) {
+    public Item(int id, double total, int group) {
         this.id = id;
         this.total = total;
-        this.grupo = grupo;
+        this.group = group;
     }
 
     /**
@@ -36,11 +36,11 @@ public class Item {
         this.total = total;
     }
 
-    public int getGrupo() {
-        return grupo;
+    public int getGroup() {
+        return group;
     }
 
-    public void setGrupo(int grupo) {
-        this.grupo = grupo;
+    public void setGroup(int group) {
+        this.group = group;
     }
 }

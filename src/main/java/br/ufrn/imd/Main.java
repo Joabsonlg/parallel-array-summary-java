@@ -16,21 +16,21 @@ public class Main {
         System.out.print("Digite o valor de T: ");
         int T = scanner.nextInt();
 
-        List<Item> itens = summary.carregarItens(N);
+        List<Item> items = summary.loadItems(N);
         System.out.println("Resultados para N=" + N + ", T=" + T + ":");
         long startTime = System.nanoTime();
-        Resultado resultado = summary.processarItens(itens, T);
+        Result result = summary.processItems(items, T);
         long endTime = System.nanoTime();
-        long tempoExecucao = endTime - startTime;
+        long timeExecution = endTime - startTime;
 
-        System.out.println(summary.formatarResultados(resultado));
-        System.out.println("Tempo para N=" + N + ", T=" + T + ": " + tempoExecucao + " nanossegundos.\n");
+        System.out.println(summary.formatResults(result));
+        System.out.println("Tempo para N=" + N + ", T=" + T + ": " + timeExecution + " nanossegundos.\n");
 
         String fileName = "resultados/N" + N + "T" + T + ".txt";
         try (PrintWriter writer = new PrintWriter(fileName)) {
             writer.print("Resultados para N=" + N + ", T=" + T + ":\n");
-            writer.print(summary.formatarResultados(resultado));
-            writer.print("Tempo para N=" + N + ", T=" + T + ": " + tempoExecucao + " nanossegundos.\n");
+            writer.print(summary.formatResults(result));
+            writer.print("Tempo para N=" + N + ", T=" + T + ": " + timeExecution + " nanossegundos.\n");
         }
     }
 }

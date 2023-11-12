@@ -1,6 +1,6 @@
 import br.ufrn.imd.Item;
 import br.ufrn.imd.ParallelArraySummary;
-import br.ufrn.imd.Resultado;
+import br.ufrn.imd.Result;
 import org.junit.Assert;
 import org.junit.Test;
 
@@ -8,7 +8,6 @@ import java.util.Arrays;
 import java.util.List;
 
 public class ParallelArraySummaryTest {
-
     @Test
     public void testSomatorioTotais() throws InterruptedException {
         ParallelArraySummary summary = new ParallelArraySummary();
@@ -18,8 +17,8 @@ public class ParallelArraySummaryTest {
                 new Item(3, 3.0, 1),
                 new Item(4, 6.0, 2)
         );
-        Resultado resultado = summary.processarItens(itens, 4);
-        Assert.assertEquals(19.0, resultado.getTotalSum(), 0.01);
+        Result result = summary.processItems(itens, 4);
+        Assert.assertEquals(19.0, result.getTotalSum(), 0.01);
     }
 
     @Test
@@ -31,9 +30,9 @@ public class ParallelArraySummaryTest {
                 new Item(3, 3.0, 1),
                 new Item(4, 6.0, 2)
         );
-        Resultado resultado = summary.processarItens(itens, 4);
-        Assert.assertEquals(7.5, resultado.getSubtotalPorGrupo().get(1), 0.01);
-        Assert.assertEquals(11.5, resultado.getSubtotalPorGrupo().get(2), 0.01);
+        Result result = summary.processItems(itens, 4);
+        Assert.assertEquals(7.5, result.getSubtotalByGroup().get(1), 0.01);
+        Assert.assertEquals(11.5, result.getSubtotalByGroup().get(2), 0.01);
     }
 
     @Test
@@ -45,8 +44,8 @@ public class ParallelArraySummaryTest {
                 new Item(3, 3.0, 1),
                 new Item(4, 6.0, 2)
         );
-        Resultado resultado = summary.processarItens(itens, 4);
-        Assert.assertEquals(3, resultado.getCountMenorQue5());
+        Result result = summary.processItems(itens, 4);
+        Assert.assertEquals(3, result.getCountLessThan5());
     }
 
     @Test
@@ -58,7 +57,7 @@ public class ParallelArraySummaryTest {
                 new Item(3, 3.0, 1),
                 new Item(4, 6.0, 2)
         );
-        Resultado resultado = summary.processarItens(itens, 4);
-        Assert.assertEquals(2, resultado.getCountMaiorIgual5());
+        Result result = summary.processItems(itens, 4);
+        Assert.assertEquals(2, result.getCountMajorIgual5());
     }
 }
