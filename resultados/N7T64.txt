@@ -1,11 +1,11 @@
 Resultados para N=7, T=64:
-Somatório dos Totais: 4.999025956349415E7
+Somatório dos Totais: 5.0006268987070985E7
 Somatório dos Subtotais por Grupo:
-Grupo 1: 9998491.166979026
-Grupo 2: 9997135.625379942
-Grupo 3: 9998699.335898118
-Grupo 4: 9990023.705274332
-Grupo 5: 1.0005909729972003E7
-Número de elementos com total < 5: 5001826
-Número de elementos com total >= 5: 4998174
-Tempo para N=7, T=64: 2709833783 nanossegundos.
+Grupo 1: 1.0008242413790874E7
+Grupo 2: 9993788.16901601
+Grupo 3: 9990685.953258285
+Grupo 4: 1.0016590914251788E7
+Grupo 5: 9996961.536753152
+Número de elementos com total < 5: 4999672
+Número de elementos com total >= 5: 5000328
+Tempo para N=7, T=64: 5553472365 nanossegundos.

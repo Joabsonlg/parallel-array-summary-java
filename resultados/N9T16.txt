@@ -1,0 +1,11 @@
+Resultados para N=9, T=16:
+Somatório dos Totais: 5.0000107621720495E9
+Somatório dos Subtotais por Grupo:
+Grupo 1: 9.999417672296443E8
+Grupo 2: 1.0000819936115936E9
+Grupo 3: 1.000032421548607E9
+Grupo 4: 9.999843741466095E8
+Grupo 5: 9.999702056277974E8
+Número de elementos com total < 5: 500022601
+Número de elementos com total >= 5: 499977399
+Tempo para N=9, T=16: 567978632083 nanossegundos.

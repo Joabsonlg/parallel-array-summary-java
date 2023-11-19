@@ -2,11 +2,10 @@ package br.ufrn.imd;
 
 import java.io.FileNotFoundException;
 import java.io.PrintWriter;
-import java.util.List;
 import java.util.Scanner;
 
 public class Main {
-    public static void main(String[] args) throws InterruptedException, FileNotFoundException {
+    public static void main(String[] args) throws FileNotFoundException {
         Scanner scanner = new Scanner(System.in);
         ParallelArraySummary summary = new ParallelArraySummary();
 
@@ -16,13 +15,13 @@ public class Main {
         System.out.print("Digite o valor de T: ");
         int T = scanner.nextInt();
 
-        List<Item> items = summary.loadItems(N);
-        System.out.println("Resultados para N=" + N + ", T=" + T + ":");
+        summary.loadItems(N);
         long startTime = System.nanoTime();
-        Result result = summary.processItems(items, T);
+        Result result = summary.processItems(T);
         long endTime = System.nanoTime();
         long timeExecution = endTime - startTime;
 
+        System.out.println("Resultados para N=" + N + ", T=" + T + ":");
         System.out.println(summary.formatResults(result));
         System.out.println("Tempo para N=" + N + ", T=" + T + ": " + timeExecution + " nanossegundos.\n");
 

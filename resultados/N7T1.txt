@@ -1,11 +1,11 @@
 Resultados para N=7, T=1:
-Somatório dos Totais: 5.001311762247351E7
+Somatório dos Totais: 4.9992084604560934E7
 Somatório dos Subtotais por Grupo:
-Grupo 1: 1.0010830757282611E7
-Grupo 2: 1.0007683077811629E7
-Grupo 3: 1.0003675911303602E7
-Grupo 4: 1.0008392513246763E7
-Grupo 5: 9982535.362831127
-Número de elementos com total < 5: 4998004
-Número de elementos com total >= 5: 5001996
-Tempo para N=7, T=1: 839874216 nanossegundos.
+Grupo 1: 9993112.442513674
+Grupo 2: 9986248.016448671
+Grupo 3: 1.0018024148810435E7
+Grupo 4: 9992957.45756698
+Grupo 5: 1.0001742539216792E7
+Número de elementos com total < 5: 5002626
+Número de elementos com total >= 5: 4997374
+Tempo para N=7, T=1: 5590125281 nanossegundos.
