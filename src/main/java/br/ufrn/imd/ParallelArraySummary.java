@@ -1,9 +1,12 @@
 package br.ufrn.imd;
 
 import java.util.*;
+import java.util.concurrent.ConcurrentHashMap;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 import java.util.concurrent.TimeUnit;
+import java.util.concurrent.atomic.DoubleAdder;
+import java.util.concurrent.atomic.LongAdder;
 
 /**
  * Responsible for loading and processing items.
@@ -33,61 +36,42 @@ public class ParallelArraySummary {
      * @throws InterruptedException Exception thrown if an error occurs while waiting for the threads to finish.
      */
     public Result processItems(List<Item> items, int T) throws InterruptedException {
-        // Estruturas para armazenar resultados intermediários
-        // O uso de arrays de tamanho 1 é necessário para que as variáveis possam ser acessadas num lambda
-        // sem a necessidade de serem declaradas como final.
-        double[] totalSum = new double[1];
-        Map<Integer, Double> subtotalByGroup = new HashMap<>();
-        long[] countLessThan5 = new long[1];
-        long[] countMajorIgual5 = new long[1];
+        DoubleAdder totalSum = new DoubleAdder();
+        Map<Integer, DoubleAdder> subtotalByGroup = new ConcurrentHashMap<>();
+        LongAdder countLessThan5 = new LongAdder();
+        LongAdder countMajorIgual5 = new LongAdder();;
 
-        // Inicializando o ExecutorService. Ele será responsável por gerenciar as threads.
         ExecutorService executor = Executors.newFixedThreadPool(T);
 
-        // Dividindo tarefas entre as threads
-        // Cada thread processará um chunk de items. Chunk é uma parte da lista de items.
-        int chunkSize = items.size() / T;
+        int chunkSize = (int) Math.ceil(items.size() / (double) T);
 
-        // Para cada thread, é criada uma tarefa que processa um chunk de items.
         for (int i = 0; i < T; i++) {
-
-            // Calculando o índice inicial e final do chunk
             int start = i * chunkSize;
-            int end = (i == T - 1) ? items.size() : (start + chunkSize);
+            int end = Math.min(start + chunkSize, items.size());
 
-            // Criando a tarefa
             executor.submit(() -> {
                 for (int j = start; j < end; j++) {
                     Item item = items.get(j);
+                    totalSum.add(item.getTotal());
 
-                    // Sincronização para evitar condições de corrida
-                    synchronized (totalSum) {
-                        totalSum[0] += item.getTotal();
-                    }
-
-                    synchronized (subtotalByGroup) {
-                        subtotalByGroup.merge(item.getGroup(), item.getTotal(), Double::sum);
-                    }
+                    subtotalByGroup.computeIfAbsent(item.getGroup(), k -> new DoubleAdder()).add(item.getTotal());
 
                     if (item.getTotal() < 5) {
-                        synchronized (countLessThan5) {
-                            countLessThan5[0]++;
-                        }
+                        countLessThan5.increment();
                     } else {
-                        synchronized (countMajorIgual5) {
-                            countMajorIgual5[0]++;
-                        }
+                        countMajorIgual5.increment();
                     }
                 }
             });
         }
 
-        // Aguardando a finalização das tarefas
         executor.shutdown();
         executor.awaitTermination(1, TimeUnit.MINUTES);
 
-        // Retornando o resultado
-        return new Result(totalSum[0], subtotalByGroup, countLessThan5[0], countMajorIgual5[0]);
+        Map<Integer, Double> finalSubtotals = new HashMap<>();
+        subtotalByGroup.forEach((k, v) -> finalSubtotals.put(k, v.sum()));
+
+        return new Result(totalSum.sum(), finalSubtotals, countLessThan5.sum(), countMajorIgual5.sum());
     }
 
     /**

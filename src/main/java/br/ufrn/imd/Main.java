@@ -17,12 +17,12 @@ public class Main {
         int T = scanner.nextInt();
 
         List<Item> items = summary.loadItems(N);
-        System.out.println("Resultados para N=" + N + ", T=" + T + ":");
         long startTime = System.nanoTime();
         Result result = summary.processItems(items, T);
         long endTime = System.nanoTime();
         long timeExecution = endTime - startTime;
 
+        System.out.println("Resultados para N=" + N + ", T=" + T + ":");
         System.out.println(summary.formatResults(result));
         System.out.println("Tempo para N=" + N + ", T=" + T + ": " + timeExecution + " nanossegundos.\n");
 
