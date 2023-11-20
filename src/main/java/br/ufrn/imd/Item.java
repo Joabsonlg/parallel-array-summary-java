@@ -5,13 +5,13 @@ package br.ufrn.imd;
  */
 public class Item {
     private int id;
-    private double total;
-    private int group;
+    private float total;
+    private byte group;
 
     /**
      * Constructors
      */
-    public Item(int id, double total, int group) {
+    public Item(int id, float total, byte group) {
         this.id = id;
         this.total = total;
         this.group = group;
@@ -28,19 +28,19 @@ public class Item {
         this.id = id;
     }
 
-    public double getTotal() {
+    public float getTotal() {
         return total;
     }
 
-    public void setTotal(double total) {
+    public void setTotal(float total) {
         this.total = total;
     }
 
-    public int getGroup() {
+    public byte getGroup() {
         return group;
     }
 
-    public void setGroup(int group) {
+    public void setGroup(byte group) {
         this.group = group;
     }
 }

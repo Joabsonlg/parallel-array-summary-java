@@ -16,7 +16,7 @@ public class Main {
         System.out.print("Digite o valor de T: ");
         int T = scanner.nextInt();
 
-        List<Item> items = summary.loadItems(N);
+        ItemDataStore items = summary.loadItems(N);
         long startTime = System.nanoTime();
         Result result = summary.processItems(items, T);
         long endTime = System.nanoTime();
