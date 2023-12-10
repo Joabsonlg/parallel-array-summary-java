@@ -2,11 +2,7 @@ package br.ufrn.imd;
 
 import java.util.HashMap;
 import java.util.Map;
-import java.util.Random;
-import java.util.concurrent.ConcurrentHashMap;
-import java.util.concurrent.ExecutorService;
-import java.util.concurrent.Executors;
-import java.util.concurrent.TimeUnit;
+import java.util.concurrent.*;
 import java.util.concurrent.atomic.DoubleAdder;
 import java.util.concurrent.atomic.LongAdder;
 
@@ -23,9 +19,9 @@ public class ParallelArraySummary {
     public ItemDataStore loadItems(int N) {
         int size = (int) Math.pow(10, N);
         ItemDataStore store = new ItemDataStore(size);
-        Random rand = new Random();
+        ThreadLocalRandom rand = ThreadLocalRandom.current();
         for (int i = 0; i < size; i++) {
-            store.setItem(i, (float) rand.nextDouble() * 10, (byte) (rand.nextInt(5) + 1));
+            store.setItem(i, rand.nextFloat() * 10, (byte) (rand.nextInt(5) + 1));
         }
         return store;
     }
@@ -45,21 +41,19 @@ public class ParallelArraySummary {
         LongAdder countMajorIgual5 = new LongAdder();
 
         ExecutorService executor = Executors.newFixedThreadPool(T);
-
         int chunkSize = (int) Math.ceil(items.size() / (double) T);
 
         for (int i = 0; i < T; i++) {
-            int start = i * chunkSize;
-            int end = Math.min(start + chunkSize, items.size());
+            final int start = i * chunkSize;
+            final int end = Math.min(start + chunkSize, items.size());
 
             executor.submit(() -> {
                 for (int j = start; j < end; j++) {
                     float total = items.getTotal(j);
-                    byte group = items.getGroup(j);
+                    int group = items.getGroup(j);
 
                     totalSum.add(total);
-
-                    subtotalByGroup.computeIfAbsent((int) group, k -> new DoubleAdder()).add(total);
+                    subtotalByGroup.computeIfAbsent(group, k -> new DoubleAdder()).add(total);
 
                     if (total < 5) {
                         countLessThan5.increment();
@@ -71,7 +65,7 @@ public class ParallelArraySummary {
         }
 
         executor.shutdown();
-        executor.awaitTermination(1, TimeUnit.MINUTES);
+        executor.awaitTermination(10, TimeUnit.MINUTES);
 
         Map<Integer, Double> finalSubtotals = new HashMap<>();
         subtotalByGroup.forEach((k, v) -> finalSubtotals.put(k, v.sum()));

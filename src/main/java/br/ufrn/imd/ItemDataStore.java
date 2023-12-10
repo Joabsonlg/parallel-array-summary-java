@@ -1,8 +1,8 @@
 package br.ufrn.imd;
 
 public class ItemDataStore {
-    private float[] totals;
-    private byte[] groups;
+    private final float[] totals;
+    private final byte[] groups;
 
     public ItemDataStore(int size) {
         this.totals = new float[size];
@@ -25,6 +25,4 @@ public class ItemDataStore {
     public byte getGroup(int index) {
         return groups[index];
     }
-
-    // Outros métodos conforme necessário, como métodos de busca ou atualização
 }
