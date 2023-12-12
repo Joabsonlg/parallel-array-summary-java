@@ -2,7 +2,6 @@ package br.ufrn.imd;
 
 import java.io.FileNotFoundException;
 import java.io.PrintWriter;
-import java.util.List;
 import java.util.Scanner;
 
 public class Main {
@@ -16,7 +15,12 @@ public class Main {
         System.out.print("Digite o valor de T: ");
         int T = scanner.nextInt();
 
-        List<Item> items = summary.loadItems(N);
+//        int[] Ns = {5, 7, 9};
+//        int[] Ts = {1, 4, 16, 64, 256};
+
+//        for (int N : Ns) {
+//            for (int T : Ts) {
+        ItemDataStore items = summary.loadItems(N);
         long startTime = System.nanoTime();
         Result result = summary.processItems(items, T);
         long endTime = System.nanoTime();
@@ -32,5 +36,8 @@ public class Main {
             writer.print(summary.formatResults(result));
             writer.print("Tempo para N=" + N + ", T=" + T + ": " + timeExecution + " nanossegundos.\n");
         }
+        System.out.println("\n");
+//    }
+//        }
     }
 }

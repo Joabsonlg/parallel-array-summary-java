@@ -1,0 +1,11 @@
+Resultados para N=9, T=64:
+Somatório dos Totais: 4.999962039395281E9
+Somatório dos Subtotais por Grupo:
+Grupo 1: 9.999414606547215E8
+Grupo 2: 9.999659339788795E8
+Grupo 3: 1.0001056977982807E9
+Grupo 4: 1.0001315144514179E9
+Grupo 5: 9.998174325119804E8
+Número de elementos com total < 5: 500000746
+Número de elementos com total >= 5: 499999254
+Tempo para N=9, T=64: 6542553338 nanossegundos.

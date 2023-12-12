@@ -1,0 +1,11 @@
+Resultados para N=9, T=256:
+Somatório dos Totais: 4.999998974095076E9
+Somatório dos Subtotais por Grupo:
+Grupo 1: 1.0000494121407591E9
+Grupo 2: 1.0000578676522317E9
+Grupo 3: 1.0000574438972403E9
+Grupo 4: 1.0000058331085078E9
+Grupo 5: 9.998284172963376E8
+Número de elementos com total < 5: 499987195
+Número de elementos com total >= 5: 500012805
+Tempo para N=9, T=256: 6517340006 nanossegundos.
